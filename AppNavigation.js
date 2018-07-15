@@ -31,7 +31,7 @@ const PrimaryNav = TabNavigator({
 
 }, {
     // Default config for all screens
-    initialRouteName: 'TinderScreen',
+    initialRouteName: 'TweetbotProfile',
     animationEnabled: false,
     swipeEnabled: false,
     lazyLoad: true,
