@@ -3,7 +3,7 @@ import {StyleSheet} from 'react-native'
 import Icon from 'react-native-vector-icons/Ionicons';
 
 import Tinder from "./Tinder";
-import Tweetbot from "./Tweetbot";
+//import Tweetbot from "./Tweetbot";
 import TweetbotProfile from "./TweetbotProfile";
 
 import {Colors} from "./Themes";
@@ -24,7 +24,7 @@ const PrimaryNav = TabNavigator({
 
 )}
     },
-    TweetbotScreen: { screen: Tweetbot },
+    //TweetbotScreen: { screen: Tweetbot },
     TweetbotProfile: {screen: TweetbotProfile}
 
 

@@ -8,9 +8,12 @@ import Icon from 'react-native-vector-icons/Entypo';
 
 const Screen = Dimensions.get('window');
 
+
 export default class RowActions1 extends Component {
     constructor(props) {
         super(props);
+        this.username = "Unavailable";
+        this.tweet = "tweety bird ya bish";
         this.state = {
             damping: 1-0.6,
             tension: 300
@@ -24,29 +27,13 @@ export default class RowActions1 extends Component {
     <View style={styles.rowContent}>
     <View style={styles.rowIcon} />
         <View>
-        <Text style={styles.rowTitle}>Row Title</Text>
-        <Text style={styles.rowSubtitle}>Drag the row left and right</Text>
+        <Text style={styles.rowTitle}>{this.username}</Text>
+        <Text style={styles.rowSubtitle}>{this.tweet}</Text>
         </View>
         </View>
         </Row>
-        <Row damping={this.state.damping} tension={this.state.tension}>
-    <View style={styles.rowContent}>
-    <View style={styles.rowIcon} />
-        <View>
-        <Text style={styles.rowTitle}>Another Row</Text>
-        <Text style={styles.rowSubtitle}>You can drag this row too</Text>
-        </View>
-        </View>
-        </Row>
-        <Row damping={this.state.damping} tension={this.state.tension}>
-    <View style={styles.rowContent}>
-    <View style={styles.rowIcon} />
-        <View>
-        <Text style={styles.rowTitle}>And A Third</Text>
-        <Text style={styles.rowSubtitle}>This row can also be swiped</Text>
-        </View>
-        </View>
-        </Row>
+
+
 
 
         <View style={styles.playground}>
@@ -93,28 +80,9 @@ class Row extends Component {
             <View style={{backgroundColor: '#262626'}}>
 
     <View style={{position: 'absolute', right: 0, height: 75, flexDirection: 'row', alignItems: 'center'}}>
-    <TouchableOpacity style={[styles.button]} onPress={this.onButtonPress.bind(this, 'trash')}>
-    <Animated.Image source={require('/Users/skylarbarrera/Dev/clean/Images/icon-menu.png')} style={
-            [styles.buttonImage, {
-            opacity: this._deltaX.interpolate({
-                inputRange: [-150, -115],
-                outputRange: [1, 0],
-                extrapolateLeft: 'clamp',
-                extrapolateRight: 'clamp'
-            }),
-                transform: [{
-                scale: this._deltaX.interpolate({
-                    inputRange: [-150, -115],
-                    outputRange: [1, 0.7],
-                    extrapolateLeft: 'clamp',
-                    extrapolateRight: 'clamp'
-                })
-            }]
-        }
-    ]} />
-        </TouchableOpacity>
+
         <TouchableOpacity style={[styles.button]} onPress={this.onButtonPress.bind(this, 'snooze')}>
-    <Animated.Image source={require('/Users/skylarbarrera/Dev/clean/Images/icon-clock.png')} style={
+    <Animated.View style={
             [styles.buttonImage, {
             opacity: this._deltaX.interpolate({
                 inputRange: [-75, -50],
@@ -131,13 +99,15 @@ class Row extends Component {
                 })
             }]
         }
-    ]} />
+    ]} >
+    <Icon name="dots-three-horizontal" size={30} color="white" />
+            </Animated.View>
         </TouchableOpacity>
         </View>
 
         <View style={{position: 'absolute', left: 0, height: 75, flexDirection: 'row', alignItems: 'center'}}>
     <TouchableOpacity style={[styles.button]} onPress={this.onButtonPress.bind(this, 'done')}>
-    <Animated.View style={
+    <Animated.Image source={require('/Users/skylarbarrera/Dev/clean/Images/icon-clock.png')} style={
             [styles.buttonImage, {
             opacity: this._deltaX.interpolate({
                 inputRange: [50, 75],
@@ -154,10 +124,9 @@ class Row extends Component {
                 })
             }]
         }
-    ]} >
+    ]} />
 
-    <Icon name="dots-three-horizontal" size={30} color="#900" />
-            </Animated.View>
+
             </TouchableOpacity>
             </View>
 
@@ -165,9 +134,9 @@ class Row extends Component {
         ref={el => this.interactableElem = el}
         horizontalOnly={true}
         snapPoints={[
-                {x: 75, damping: 1-this.props.damping, tension: this.props.tension},
+                {x: 150, damping: 1-this.props.damping, tension: this.props.tension},
         {x: 0, damping: 1-this.props.damping, tension: this.props.tension},
-        {x: -150, damping: 1-this.props.damping, tension: this.props.tension}
+        {x: -75, damping: 1-this.props.damping, tension: this.props.tension}
     ]}
         onSnap={this.onSnap.bind(this)}
         onDrag={this.onDrag.bind(this)}
@@ -240,7 +209,8 @@ const styles = StyleSheet.create({
         width: 75,
         height: "100%",
         justifyContent: "center",
-        alignItems: "center"
+        alignItems: "center",
+        backgroundColor:"#333333"
     },
     buttonImage: {
         width: 40,
